@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descontaminación Río Cañete</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f2fe 0%, #cffafe 50%, #ccfbf1 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .header-icon {
+            width: 60px;
+            height: 60px;
+            color: #2563eb;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #6b7280;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        section {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #1f2937;
+        }
+
+        .info-text {
+            color: #374151;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .parametros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .parametro-card {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+
+        .parametro-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .parametro-nombre {
+            font-weight: 600;
+            color: #374151;
+            font-size: 1rem;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .status-green {
+            background: #10b981;
+        }
+
+        .status-yellow {
+            background: #f59e0b;
+        }
+
+        .parametro-valor {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .parametro-rango {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .parametro-estado {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .info-box {
+            background: #dbeafe;
+            border: 1px solid #93c5fd;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            width: 24px;
+            height: 24px;
+            color: #2563eb;
+            flex-shrink: 0;
+        }
+
+        .info-box h4 {
+            color: #1e3a8a;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p {
+            color: #1e40af;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .acciones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .accion-card {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 1px solid #a7f3d0;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+
+        .accion-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .accion-numero {
+            width: 40px;
+            height: 40px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .accion-titulo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .accion-descripcion {
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        .resultados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .resultado-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-radius: 0.75rem;
+        }
+
+        .resultado-1 {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+
+        .resultado-2 {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        }
+
+        .resultado-3 {
+            background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+        }
+
+        .resultado-numero {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .resultado-1 .resultado-numero {
+            color: #2563eb;
+        }
+
+        .resultado-2 .resultado-numero {
+            color: #10b981;
+        }
+
+        .resultado-3 .resultado-numero {
+            color: #14b8a6;
+        }
+
+        .resultado-texto {
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .actualizacion {
+            background: #f9fafb;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            color: #374151;
+        }
+
+        .actualizacion strong {
+            color: #1f2937;
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p:first-child {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer p:last-child {
+            color: #9ca3af;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .parametros-grid,
+            .acciones-grid,
+            .resultados-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <svg class="header-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+            </svg>
+            <div>
+                <h1>Proyecto de Descontaminación</h1>
+                <p class="subtitle">Río Cañete - Región Lima</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Información del Proyecto -->
+        <section>
+            <div class="section-header">
+                <svg class="section-icon" fill="none" stroke="#2563eb" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <h2>Sobre el Proyecto</h2>
+            </div>
+            <p class="info-text">
+                El río Cañete es uno de los recursos hídricos más importantes de la región Lima, 
+                abasteciendo a miles de familias y siendo vital para la agricultura local. Este proyecto 
+                de monitoreo y descontaminación busca preservar la calidad del agua mediante el seguimiento 
+                constante de parámetros ambientales y la implementación de acciones de remediación.
+            </p>
+            <p class="info-text">
+                A través de tecnología IoT y análisis de laboratorio, monitoreamos indicadores clave 
+                como pH, oxígeno disuelto, temperatura y turbidez para garantizar que el agua cumpla 
+                con los estándares de calidad ambiental establecidos por la normativa peruana.
+            </p>
+        </section>
+
+        <!-- Monitoreo de Parámetros -->
+        <section>
+            <div class="section-header">
+                <svg class="section-icon" fill="none" stroke="#2563eb" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+                <h2>Monitoreo de Parámetros</h2>
+            </div>
+
+            <div class="parametros-grid">
+                <div class="parametro-card">
+                    <div class="parametro-header">
+                        <span class="parametro-nombre">pH</span>
+                        <div class="status-dot status-green"></div>
+                    </div>
+                    <div class="parametro-valor">7.2</div>
+                    <div class="parametro-rango">Rango: 6.5 - 8.5</div>
+                    <div class="parametro-estado">Estado: Normal</div>
+                </div>
+
+                <div class="parametro-card">
+                    <div class="parametro-header">
+                        <span class="parametro-nombre">Oxígeno Disuelto</span>
+                        <div class="status-dot status-green"></div>
+                    </div>
+                    <div class="parametro-valor">6.8 mg/L</div>
+                    <div class="parametro-rango">Rango: > 6 mg/L</div>
+                    <div class="parametro-estado">Estado: Óptimo</div>
+                </div>
+
+                <div class="parametro-card">
+                    <div class="parametro-header">
+                        <span class="parametro-nombre">Temperatura</span>
+                        <div class="status-dot status-green"></div>
+                    </div>
+                    <div class="parametro-valor">18°C</div>
+                    <div class="parametro-rango">Rango: 15 - 25°C</div>
+                    <div class="parametro-estado">Estado: Normal</div>
+                </div>
+
+                <div class="parametro-card">
+                    <div class="parametro-header">
+                        <span class="parametro-nombre">Turbidez</span>
+                        <div class="status-dot status-yellow"></div>
+                    </div>
+                    <div class="parametro-valor">42 NTU</div>
+                    <div class="parametro-rango">Rango: < 50 NTU</div>
+                    <div class="parametro-estado">Estado: Aceptable</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <svg class="info-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <div>
+                    <h4>Importancia del pH en Ecosistemas Acuáticos</h4>
+                    <p>
+                        El pH mide la acidez o alcalinidad del agua. Un pH entre 6.5 y 8.5 es ideal para 
+                        la vida acuática. Valores fuera de este rango pueden indicar contaminación y afectar 
+                        negativamente a peces, plantas y microorganismos esenciales para el ecosistema.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Acciones de Descontaminación -->
+        <section>
+            <div class="section-header">
+                <svg class="section-icon" fill="none" stroke="#10b981" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                <h2>Acciones de Descontaminación</h2>
+            </div>
+
+            <div class="acciones-grid">
+                <div class="accion-card">
+                    <div class="accion-header">
+                        <div class="accion-numero">1</div>
+                        <h3 class="accion-titulo">Monitoreo Continuo</h3>
+                    </div>
+                    <p class="accion-descripcion">
+                        Medición de parámetros fisicoquímicos cada 4 horas en puntos estratégicos.
+                    </p>
+                </div>
+
+                <div class="accion-card">
+                    <div class="accion-header">
+                        <div class="accion-numero">2</div>
+                        <h3 class="accion-titulo">Tratamiento de Aguas</h3>
+                    </div>
+                    <p class="accion-descripcion">
+                        Implementación de plantas de tratamiento para reducir contaminantes industriales.
+                    </p>
+                </div>
+
+                <div class="accion-card">
+                    <div class="accion-header">
+                        <div class="accion-numero">3</div>
+                        <h3 class="accion-titulo">Reforestación Ribereña</h3>
+                    </div>
+                    <p class="accion-descripcion">
+                        Plantación de especies nativas para estabilizar márgenes y filtrar escorrentías.
+                    </p>
+                </div>
+
+                <div class="accion-card">
+                    <div class="accion-header">
+                        <div class="accion-numero">4</div>
+                        <h3 class="accion-titulo">Educación Ambiental</h3>
+                    </div>
+                    <p class="accion-descripcion">
+                        Programas comunitarios sobre conservación y uso responsable del recurso hídrico.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resultados -->
+        <section>
+            <div class="section-header">
+                <svg class="section-icon" fill="none" stroke="#10b981" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                </svg>
+                <h2>Resultados y Avances</h2>
+            </div>
+
+            <div class="resultados-grid">
+                <div class="resultado-card resultado-1">
+                    <div class="resultado-numero">78%</div>
+                    <div class="resultado-texto">Reducción de contaminantes</div>
+                </div>
+
+                <div class="resultado-card resultado-2">
+                    <div class="resultado-numero">24/7</div>
+                    <div class="resultado-texto">Monitoreo continuo</div>
+                </div>
+
+                <div class="resultado-card resultado-3">
+                    <div class="resultado-numero">12</div>
+                    <div class="resultado-texto">Puntos de medición</div>
+                </div>
+            </div>
+
+            <div class="actualizacion">
+                <strong>Última actualización:</strong> 30 de Septiembre, 2025 - 14:30 hrs
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Proyecto IoT - Universidad Nacional de Cañete</p>
+        <p>Contribuyendo a la conservación del medio ambiente</p>
+    </footer>
+</body>
+</html>
